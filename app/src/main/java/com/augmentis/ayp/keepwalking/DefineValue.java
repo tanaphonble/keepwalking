@@ -5,4 +5,7 @@ package com.augmentis.ayp.keepwalking;
  */
 public class DefineValue {
     public static final String DEBUG_LOG_TAG = "DEBUG_LOG_TAG";
+    public static final String BUTTON_ADD = "ADD";
+    public static final String BUTTON_SAVE = "SAVE";
+    public static final String ITEM_ID = "ITEM_ID";
 }

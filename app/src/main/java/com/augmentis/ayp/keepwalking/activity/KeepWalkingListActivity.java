@@ -1,7 +1,7 @@
 package com.augmentis.ayp.keepwalking.activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.View;
 
 import com.augmentis.ayp.keepwalking.DefineValue;
@@ -12,6 +12,13 @@ import com.augmentis.ayp.keepwalking.fragment.KeepWalkingListFragment;
  */
 public class KeepWalkingListActivity extends SingleFragmentOneButtonActivity {
 
+    String buttonAddText = DefineValue.BUTTON_ADD;
+
+    @Override
+    public String setButtonText() {
+        return buttonAddText;
+    }
+
     @Override
     public Fragment onCreateNewFragment() {
         return new KeepWalkingListFragment();
@@ -19,6 +26,7 @@ public class KeepWalkingListActivity extends SingleFragmentOneButtonActivity {
 
     @Override
     public void onClick(View view) {
-
+        Intent intent = new Intent(KeepWalkingListActivity.this, KeepWalkingDetailActivity.class);
+        startActivity(intent);
     }
 }

@@ -21,6 +21,7 @@ public abstract class SingleFragmentOneButtonActivity extends FragmentActivity i
         FragmentManager fm = getSupportFragmentManager();
         Fragment f = fm.findFragmentById(R.id.fragment_container);
         buttonOne = (Button) findViewById(R.id.button_one);
+        buttonOne.setText(setButtonText());
         buttonOne.setOnClickListener(this);
 
         // initialize fragment
@@ -31,5 +32,8 @@ public abstract class SingleFragmentOneButtonActivity extends FragmentActivity i
                     .commit();
         }
     }
+
     public abstract Fragment onCreateNewFragment();
+
+    public abstract String setButtonText();
 }

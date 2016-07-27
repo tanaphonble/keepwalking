@@ -5,17 +5,15 @@
     android:layout_height="match_parent"
     tools:context=".activity.SingleFragmentOneButtonActivity">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/button_one"></LinearLayout>
+        android:layout_above="@+id/button_one"></FrameLayout>
 
     <Button
         android:id="@+id/button_one"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="@string/button_add"
         android:layout_alignParentBottom="true"/>
 </RelativeLayout>

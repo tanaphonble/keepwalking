@@ -1,5 +1,6 @@
 package com.augmentis.ayp.keepwalking.item;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -7,36 +8,33 @@ import java.util.UUID;
  * Created by Tanaphon on 7/27/2016.
  */
 public class Item {
-    UUID id;
-    String title;
-    Date timeStamp;
+    UUID _id;
+    String _title;
+    String _timeStamp;
+    Date _currentTime = new Date();
 
-    public Item(UUID id, Date timeStamp) {
-        this.id = id;
-        this.timeStamp = timeStamp;
+    public Item() {
+        _id = UUID.randomUUID();
+        _timeStamp = getSimpleDateFormat(_currentTime);
     }
 
     public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
+        return _id;
     }
 
     public String getTitle() {
-        return title;
+        return _title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        _title = title;
     }
 
-    public Date getTimeStamp() {
-        return timeStamp;
+    public String getSimpleDateFormat(Date date) {
+        return new SimpleDateFormat("dd MMMM yyyy hh:mm:ss").format(date);
     }
 
-    public void setTimeStamp(Date timeStamp) {
-        this.timeStamp = timeStamp;
+    public String getTimeStamp() {
+        return _timeStamp;
     }
 }
