@@ -21,11 +21,6 @@ public class Lab {
 
     private Lab() {
         itemList = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            Item item = new Item();
-            item.setTitle("Title #" + i);
-            itemList.add(item);
-        }
     }
 
     public Item getItemById(UUID id){

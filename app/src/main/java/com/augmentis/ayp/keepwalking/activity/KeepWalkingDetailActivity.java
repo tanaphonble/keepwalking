@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.AttributeSet;
 import android.view.View;
 
 import com.augmentis.ayp.keepwalking.DefineValue;
 import com.augmentis.ayp.keepwalking.fragment.KeepWalkingDetailFragment;
+import com.augmentis.ayp.keepwalking.item.Item;
+import com.augmentis.ayp.keepwalking.item.Lab;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class KeepWalkingDetailActivity extends SingleFragmentOneButtonActivity {
 
     private UUID _itemId;
+    private List<Item> _items = Lab.getInstance().getItems();
 
     String buttonSaveText = DefineValue.BUTTON_SAVE;
 
@@ -45,9 +48,14 @@ public class KeepWalkingDetailActivity extends SingleFragmentOneButtonActivity {
         startActivity(intent);
     }
 
-    public static Intent newIntent(Context activity, UUID id){
+    public static Intent newIntent(Context activity, UUID id) {
         Intent intent = new Intent(activity, KeepWalkingDetailActivity.class);
-        intent.putExtra(DefineValue.ITEM_ID, id);
+        if (id == null) {
+            Item item = new Item();
+            Lab.getInstance().getItems().add(item);
+            intent.putExtra(DefineValue.ITEM_ID, item.getId());
+        } else
+            intent.putExtra(DefineValue.ITEM_ID, id);
         return intent;
     }
 }

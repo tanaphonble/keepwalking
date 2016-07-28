@@ -14,6 +14,7 @@ public class Item {
     Date _currentTime = new Date();
 
     public Item() {
+        _title = "";
         _id = UUID.randomUUID();
         _timeStamp = getSimpleDateFormat(_currentTime);
     }
