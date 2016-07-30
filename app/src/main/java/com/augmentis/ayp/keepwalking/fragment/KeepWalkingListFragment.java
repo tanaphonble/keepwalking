@@ -1,16 +1,19 @@
 package com.augmentis.ayp.keepwalking.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.augmentis.ayp.keepwalking.DefineValue;
 import com.augmentis.ayp.keepwalking.R;
 import com.augmentis.ayp.keepwalking.activity.KeepWalkingDetailActivity;
 import com.augmentis.ayp.keepwalking.item.Item;
@@ -40,6 +43,12 @@ public class KeepWalkingListFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI() {
         Lab lab = Lab.getInstance();
         List<Item> items = lab.getItems();
@@ -47,7 +56,7 @@ public class KeepWalkingListFragment extends Fragment {
             _itemAdapter = new ItemAdapter(items);
             _recyclerView.setAdapter(_itemAdapter);
         } else {
-            _itemAdapter.notifyAll();
+            _itemAdapter.notifyDataSetChanged();
         }
     }
 
@@ -101,6 +110,16 @@ public class KeepWalkingListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return _items.size();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode != Activity.RESULT_OK)
+            return;
+        if(requestCode == DefineValue.REQUEST_SAVE) {
+            updateUI();
+            Log.d(DefineValue.DEBUG_LOG_TAG, "REQUEST_SAVE_OK");
         }
     }
 }
